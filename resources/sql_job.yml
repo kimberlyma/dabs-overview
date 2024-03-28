@@ -1,0 +1,10 @@
+resources:
+  jobs:
+    dabs_overview_sql_job:
+      name: sql-job-example
+      tasks:
+        - task_key: sql-select-step
+          sql_task:
+            warehouse_id: ${var.warehouse-id}
+            file:
+              path: ../src/my_query.sql

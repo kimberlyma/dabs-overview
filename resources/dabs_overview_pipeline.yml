@@ -1,0 +1,12 @@
+# The main pipeline for dabs_overview
+resources:
+  pipelines:
+    dabs_overview_pipeline:
+      name: dabs_overview_pipeline
+      target: dabs_overview_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src

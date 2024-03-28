@@ -1,0 +1,48 @@
+
+# The top-level definition for this job. This file will contain all of the common options (minimum things all jobs share)
+resources:
+  jobs:
+    dabs_overview_job:
+      name: dabs_overview_job
+
+      tasks:
+        - task_key: notebook_task
+          job_cluster_key: job_cluster
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb
+
+        - task_key: second_notebook_task
+          job_cluster_key: job_cluster
+          depends_on: 
+            - task_key: notebook_task
+          notebook_task:
+            notebook_path: ../src/notebook.ipynb            
+        
+        - task_key: refresh_pipeline
+          depends_on:
+            - task_key: notebook_task
+          pipeline_task:
+            pipeline_id: ${resources.pipelines.dabs_overview_pipeline.id}
+        
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 13.3.x-scala2.12
+
+targets:
+  # The 'dev' target, for development purposes. This target is the default.
+  dev:
+    # We use 'mode: development' to indicate this is a personal development copy:
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default
+    # - The 'development' mode is used for Delta Live Tables pipelines
+  jobs:
+      dabs_overview_job:
+        name: dabs_overview_job
+
+          
+      job_clusters:
+        - job_cluster_key: job_cluster
+          new_cluster:
+            spark_version: 14.1.x-scala2.12
+            node_type_id: i3.2xlarge
