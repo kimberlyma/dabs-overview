@@ -13,10 +13,14 @@ on:
 jobs:
   release-pipeline:
     runs-on: ubuntu-latest
+    env:
+        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
+        DATABRICKS_CLIENT_ID:  ${{ secrets.DATABRICKS_CLIENT_ID }}
+        DATABRICKS_CLIENT_SECRET:  ${{ secrets.DATABRICKS_CLIENT_SECRET }}
 
     steps:
       #----------------------------------------------
-      #       check-out repo and set-up python
+      #       check-out repo
       #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v3
@@ -25,9 +29,7 @@ jobs:
       #----------------------------------------------
       #              deploy bundle to Staging
       #----------------------------------------------
-      - name: "Deploy bundle"
+      - name: "validate bundle"
+        run: databricks bundle validate
+      - name: "deploy bundle"
         run: databricks bundle deploy
-        env:
-          DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-          DATABRICKS_CLIENT_ID:  ${{ secrets.DATABRICKS_CLIENT_ID }}
-          DATABRICKS_CLIENT_SECRET:  ${{ secrets.DATABRICKS_CLIENT_SECRET }}
