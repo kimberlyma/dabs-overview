@@ -16,6 +16,10 @@
     },
     "yaml.schemas": {
         "./schemas/bundle_config_schema.json": "bundle*.yml",
-        "https://json.schemastore.org/databricks-asset-bundles.json": "file:///Users/kimberly.mahoney/Documents/demos/dabs-overview/resources/sql_job.yml"
+        "https://json.schemastore.org/databricks-asset-bundles.json": [
+            "file:///Users/kimberly.mahoney/Documents/demos/dabs-overview/resources/sql_job.yml",
+            "file:///Users/kimberly.mahoney/Documents/demos/dabs-overview/databricks.yml"
+        ]
     },
+    "python.envFile": "${workspaceFolder}/.databricks/.databricks.env",
 }
