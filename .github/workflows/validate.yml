@@ -14,9 +14,9 @@ jobs:
   release-pipeline:
     runs-on: ubuntu-latest
     env:
-        DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
-        DATABRICKS_CLIENT_ID:  ${{ secrets.DATABRICKS_CLIENT_ID }}
-        DATABRICKS_CLIENT_SECRET:  ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        DATABRICKS_HOST: ${{ secrets.RESTRICTED_DATABRICKS_HOST }}
+        DATABRICKS_CLIENT_ID:  ${{ secrets.RESTRICTED_DATABRICKS_CLIENT_ID }}
+        DATABRICKS_CLIENT_SECRET:  ${{ secrets.RESTRICTED_DATABRICKS_CLIENT_SECRET }}
 
     steps:
       #----------------------------------------------
