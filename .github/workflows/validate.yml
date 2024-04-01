@@ -32,4 +32,4 @@ jobs:
       - name: "validate bundle"
         run: databricks bundle validate
       - name: "deploy bundle"
-        run: databricks bundle deploy
+        run: databricks bundle deploy --debug
