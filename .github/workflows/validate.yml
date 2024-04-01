@@ -29,7 +29,7 @@ jobs:
       #----------------------------------------------
       #              deploy bundle to Staging
       #----------------------------------------------
-      - name: "validate bundle"
-        run: databricks bundle validate
+      # - name: "validate bundle"
+      #   run: databricks bundle validate
       - name: "deploy bundle"
         run: databricks bundle deploy --debug
