@@ -1,3 +1,6 @@
+cluster_def: &cluster_def
+        spark_version: 14.1.x-scala2.12
+        node_type_id: i3.4xlarge
 
 # The top-level definition for this job. This file will contain all of the common options (minimum things all jobs share)
 resources:
@@ -26,23 +29,4 @@ resources:
         
       job_clusters:
         - job_cluster_key: job_cluster
-          new_cluster:
-            spark_version: 13.3.x-scala2.12
-
-targets:
-  # The 'dev' target, for development purposes. This target is the default.
-  dev:
-    # We use 'mode: development' to indicate this is a personal development copy:
-    # - Deployed resources get prefixed with '[dev my_user_name]'
-    # - Any job schedules and triggers are paused by default
-    # - The 'development' mode is used for Delta Live Tables pipelines
-  jobs:
-      dabs_overview_job:
-        name: dabs_overview_job
-
-          
-      job_clusters:
-        - job_cluster_key: job_cluster
-          new_cluster:
-            spark_version: 14.1.x-scala2.12
-            node_type_id: i3.2xlarge
+          new_cluster: *cluster_def

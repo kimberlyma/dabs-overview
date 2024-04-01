@@ -1,0 +1,15 @@
+definitions: &custom_tags
+  Tag1: "Value1"
+  Tag2: "Value2"
+  Tag3: "Value3"
+
+targets:
+  dev:
+    resources:
+      jobs:
+        dabs_overview_job:
+          tags:
+            <<: *custom_tags
+          email_notifications:
+            on_duration_warning_threshold_exceeded:
+              - "kimberly.mahoney@databricks.com" #<--- could be variable

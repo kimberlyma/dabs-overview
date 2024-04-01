@@ -7,11 +7,7 @@ bundle:
 
 include:
   - resources/*.yml
-
-definitions: &custom_tags
-  Tag1: "Value1"
-  Tag2: "Value2"
-  Tag3: "Value3"
+  - targets/*.yml
 
 variables:
   warehouse-id:
@@ -40,19 +36,6 @@ targets:
       cluster-policy:
         lookup:
           cluster_policy: Jobs Small Policy
-    resources:
-      jobs:
-        dabs_overview_job:
-          tags:
-            <<: *custom_tags
-
-
-  ## Optionally, there could be a 'staging' target here.
-  ## (See Databricks docs on CI/CD at https://docs.databricks.com/dev-tools/bundles/ci-cd.html.)
-  #
-  # staging:
-  #   workspace:
-  #     host: https://e2-demo-west.cloud.databricks.com
 
   # The 'prod' target, used for production deployment.
   prod:
@@ -71,6 +54,7 @@ targets:
       cluster-policy:
         lookup:
           cluster_policy: Medium Clusters
+    
     run_as:
       # This runs as kimberly.mahoney@databricks.com in production. We could also use a service principal here,
       # see https://docs.databricks.com/dev-tools/bundles/permissions.html.
