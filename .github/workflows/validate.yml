@@ -16,7 +16,7 @@ jobs:
 
     steps:
       #----------------------------------------------
-      #       check-out repo and set-up python
+      #       check-out repo
       #----------------------------------------------
       - name: Check out repository
         uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
       #              deploy bundle to Staging
       #----------------------------------------------
       - name: "Deploy bundle"
-        run: databricks bundle deploy
+        run: databricks bundle validate
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID:  ${{ secrets.DATABRICKS_CLIENT_ID }}
