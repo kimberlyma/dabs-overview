@@ -25,8 +25,10 @@ jobs:
       #----------------------------------------------
       #              deploy bundle to Staging
       #----------------------------------------------
-      - name: "Deploy bundle"
+      - name: "validate bundle"
         run: databricks bundle validate
+      - name: "deploy bundle"
+        run: databricks bundle deploy
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_CLIENT_ID:  ${{ secrets.DATABRICKS_CLIENT_ID }}
